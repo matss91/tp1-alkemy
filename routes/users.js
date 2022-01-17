@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var fs=require("fs")
-let usuarios="sdfsf"
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('operaciones',{usuarios})
+  res.render('operaciones')
 });
 
 
@@ -14,11 +14,11 @@ router.post('/', function(req, res, next) {
   var op = new Array(); 
   
  op=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
-         
+  var tipo=""       
  if(condicion=="1"){
-let tipo="ingreso"
+ tipo="ingreso"
  }else {
-let tipo="egreso"
+ tipo="egreso"
  }
  
  
@@ -26,7 +26,7 @@ let tipo="egreso"
                {consepto,
                monto,
                fecha,
-              condicion}
+            tipo}
                op.usuario.push(nuevo)
            
                
