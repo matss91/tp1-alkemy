@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+  
+ 
+  <%for (let index = 0; index <usuario.usuario.length; index++) {%>
+  <%  let element = usuario.usuario[index]%>
+    <h2><%= element.consepto%>:<%= element.monto%></h2>
+    <h2><%= element.fecha%>:<%= element.tipo%></h2>
+    <a href="<%= element.id%>"><input type="button" value="editar"></a>
+    <%}%>
+  
+             
+ 
+</body>
+</html>
