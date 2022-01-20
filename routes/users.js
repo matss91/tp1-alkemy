@@ -51,18 +51,35 @@ router.get('/:id', function(req, res, next) {
   var op = new Array();
  
   op=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- var operacion=op.usuario[req.params.id-1]
+ var operacion=op.usuario[req.params.id]
   res.render('edicion',{operacion});
 });
 
 router.put('/:id',function(req, res, next) {
   var array = new Array();
- 
- array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- nuevo
- 
+  const {consepto,monto,fecha} = req.body
 
- fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
+ array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
+ for(i=0;i<array.usuario.length;i++){
+   if(req.params.id==array.usuario[i].id){
+     var id=i
+   }else{
+
+   }
+ }
+let tipo=array.usuario[id].tipo
+
+var nuevo=
+
+{id,consepto,
+monto,
+fecha,
+tipo}
+
+ array.usuario[id]=nuevo
+ 
+ 
+fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
   if(error){
     console.log("error")
    
@@ -71,6 +88,42 @@ router.put('/:id',function(req, res, next) {
   console.log("funciona")
 })
  
+ res.redirect("/")
+ 
+});
+
+
+router.delete('/eliminar/:id',function(req, res, next) {
+  var array = new Array();
+ 
+ array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
+ for(i=0;i<array.usuario.length;i++){
+ 
+if(req.params.id==array.usuario[i].id){
+var id=i
+}else{
+
+
+}
+
+
+
+}
+
+var nuevoarray  = new Array();
+
+ array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
+array.usuario.splice(id,1)
+
+ fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
+  if(error){
+    console.log("error")
+              
+  }
+  else
+  console.log("funciona")
+})
+   
  res.redirect("/")
  
 });

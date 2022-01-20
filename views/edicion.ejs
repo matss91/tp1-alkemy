@@ -15,17 +15,18 @@
         <input value=<%=operacion.monto%> name="monto" type="number" placeholder="monto" class="titulo"><br><br>
         <input value=<%=operacion.fecha%> name="fecha" type="date" placeholder="fecha" >
 
-
+        <input type="submit">
 
         
-
- </select>
-
-
-    
-<input type="submit">
-<a href=""><input type="button" value="editar"></a>
-
     </form>
+ 
+
+
+<form action="/users/eliminar/<%=operacion.id%>?_method=DELETE" method="POST">
+ 
+    <input value="eliminar" type="submit">
+</form>
+
+   
 </body>
 </html>
