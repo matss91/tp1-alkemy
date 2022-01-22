@@ -7,14 +7,23 @@
     <title>Document</title>
 </head>
 <body>
+  <%if (condition==1) {%>
+<button><a href="/users">agregar editar eliminar</a></button>
  
-  <h1>balance actual:$<%=suma%></h1>
-<button> <a href="/users" type="button">edicion</a></button>
+   <h1>balance actual:$<%=suma%></h1>
+ <%}%>
+
   <%for (let index = 0; index <usuario.usuario.length; index++) {%>
   <%  let element = usuario.usuario[index]%>
     <h2><%= element.consepto%>:<%= element.monto%></h2>
     <h2><%= element.fecha%>:<%= element.tipo%></h2>
-  <%}%>
+   <%if (editar==1) {%>
+     <a href="<%=index%>"><input type="button" value="editar"></a>
+    
+     
+  <% }%>
+    
+    <%}%>
   
              
  

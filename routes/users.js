@@ -5,7 +5,9 @@ let usuarios=fs.readFileSync('ingreso.json',{encoding:'utf8'});
 let usuario=JSON.parse(usuarios)
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('operaciones')
+ let condition=1
+ 
+  res.render('operaciones',{condition})
 });
 
 
@@ -45,14 +47,18 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/editar', function(req, res, next) {
-  res.render('editar',{usuario})
+ var condition=0
+ var editar=1
+  res.render('index',{usuario,condition,editar})
 });
 router.get('/:id', function(req, res, next) {
   var op = new Array();
  
   op=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
  var operacion=op.usuario[req.params.id]
-  res.render('edicion',{operacion});
+ var condition=0
+
+  res.render('operaciones',{operacion,condition});
 });
 
 router.put('/:id',function(req, res, next) {
@@ -110,7 +116,7 @@ var id=i
 
 }
 
-var nuevoarray  = new Array();
+
 
  array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
 array.usuario.splice(id,1)

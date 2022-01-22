@@ -8,26 +8,52 @@
 </head>
 <body>
     
-      <form action="" method="post">
+    
+    
+    
+    
+    
+    <%if (condition==1) {%>
+    <form action="" method="post">
 
        
-        <input name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
-        <input name="monto" type="number" placeholder="monto" class="titulo"><br><br>
-        <input name="fecha" type="date" placeholder="fecha" >
+           
+       
+        <input name="consepto" value="" type="text" placeholder="consepto" class="pass"><br><br>
+        <input name="monto" value="" type="number" placeholder="monto" class="titulo"><br><br>
+        <input name="fecha" value="" type="date" placeholder="fecha" >
 
 
-
+       
         <select name="condicion" class="cant">
             <option value=1>ingreso</option>
             <option value=2>egreso</option>
 
  </select>
-
-
+       
     
 <input type="submit">
 <a href="users/editar"><input type="button" value="editar"></a>
 
     </form>
+    <% }%>
+    <%if (condition==0) {%>
+    <form action="<%=operacion.id%>?_method=PUT" method="POST">
+
+       
+        <input value=<%=operacion.consepto%> name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
+        <input value=<%=operacion.monto%> name="monto" type="number" placeholder="monto" class="titulo"><br><br>
+        <input value=<%=operacion.fecha%> name="fecha" type="date" placeholder="fecha" >
+        <a href="/"><input type="button" value="volver"></a>
+        <input type="submit">
+
+        
+    </form>
+   <form action="/users/eliminar/<%=operacion.id%>?_method=DELETE" method="POST">
+        <input value="eliminar" type="submit">
+    </form>
+    <% }%>
+
+        
 </body>
 </html>
