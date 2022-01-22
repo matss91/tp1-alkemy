@@ -27,31 +27,37 @@
        
         <select name="condicion" class="cant">
             <option value=1>ingreso</option>
-            <option value=2>egreso</option>
-
- </select>
+            <option value=2>egreso</option></select>
        
     
 <input type="submit">
-<a href="users/editar"><input type="button" value="editar"></a>
 
-    </form>
+</form>
+
+<%for (let index = 0; index <usuario.usuario.length; index++) {%>
+    <%  let element = usuario.usuario[index]%>
+      <h2><%= element.consepto%>:<%= element.monto%></h2>
+      <h2><%= element.fecha%>:<%= element.tipo%></h2>
+ <button><a href="/users/<%=index%>">editar</a></button>
+ <form action="/users/eliminar/<%=element.id%>?_method=DELETE" method="POST">
+    <input value="eliminar" type="submit">
+</form>
+    <% }%>
+    
     <% }%>
     <%if (condition==0) {%>
     <form action="<%=operacion.id%>?_method=PUT" method="POST">
 
        
-        <input value=<%=operacion.consepto%> name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
-        <input value=<%=operacion.monto%> name="monto" type="number" placeholder="monto" class="titulo"><br><br>
-        <input value=<%=operacion.fecha%> name="fecha" type="date" placeholder="fecha" >
+        <input value="" name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
+        <input value="" name="monto" type="number" placeholder="monto" class="titulo"><br><br>
+        <input value="" name="fecha" type="date" placeholder="fecha" >
         <a href="/"><input type="button" value="volver"></a>
         <input type="submit">
 
         
     </form>
-   <form action="/users/eliminar/<%=operacion.id%>?_method=DELETE" method="POST">
-        <input value="eliminar" type="submit">
-    </form>
+   
     <% }%>
 
         

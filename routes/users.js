@@ -7,7 +7,7 @@ let usuario=JSON.parse(usuarios)
 router.get('/', function(req, res, next) {
  let condition=1
  
-  res.render('operaciones',{condition})
+  res.render('operaciones',{condition,usuario})
 });
 
 
