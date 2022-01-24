@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -16,7 +18,7 @@
     <%if (condition==1) {%>
     <%//armo el formulario de carga del producto y lo envio por post%>
     
-        <form action="" method="post">
+        <form class="formulario1" action="" method="post">
 
        
            
@@ -30,42 +32,73 @@
         <select name="condicion" class="cant">
             <option value=1>ingreso</option>
             <option value=2>egreso</option></select>
-       
-    
-<input type="submit">
+       <br>
+       <br>
 
+            <div ><button><a href="/">inicio</a></button></div>
+            <br>
+            <input type="submit">
+            <br>
+            <br>
 </form>
 <%//itero el array y inserto un boton que me redirija editar y envie el id %>
-<%for (let index = 0; index <usuario.usuario.length; index++) {%>
-    <%  let element = usuario.usuario[index]%>
-      <h2><%= element.consepto%>:<%= element.monto%></h2>
-      <h2><%= element.fecha%>:<%= element.tipo%></h2>
- <button><a href="/users/<%=index%>">editar</a></button>
- <%//mando con el metodo delete al elemento a eliminar%>
- <form action="/users/eliminar/<%=element.id%>?_method=DELETE" method="POST">
-    <input value="eliminar" type="submit">
-</form>
-    <% }%>
+<div class="formulario2">
     
+    <%for (let index = 0; index <usuario.usuario.length; index++) {%>
+        <div class="container">
+            <div class="row ">
+        <%  let element = usuario.usuario[index]%>
+      <div class="col-3 col-sm-4 col-md-2"><%= element.consepto%>:</div>
+
+<div class="col-3 col-sm-4 col-md-1"><%= element.monto%></div>
+    
+
+
+  <div class="col-3 col-sm-4 col-md-2"><%= element.fecha%>:</div>
+    
+<div class="col-3 col-sm-4 col-md-2"><%= element.tipo%></div>
+      <div class="col-12 col-sm-4 col-md-2"><button><a href="/users/<%=index%>">editar</a></button></div>
+  
+      <%//mando con el metodo delete al elemento a eliminar%>
+ <form action="/users/eliminar/<%=element.id%>?_method=DELETE" method="POST">
+   <div class="col-12 col-sm-4 col-md-1"> <input value="eliminar" type="submit"></div>
+
+</form>
+</div>
+</div>
+<% }%>
+
+
+</div>
     <% }%>
    <%//hago un if con la  condition que es igual a 0 enviada por get y la igualo a 0 para que entre en el if   %>
    
    <%if (condition==0) {%>
     <form action="<%=operacion.id%>?_method=PUT" method="POST">
-
+        <div class="container">
+            <div class="row ">
        <%//lleno los input con los datos a editar y los envio por put%>
-        <input value="" name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
+       <div class="col-sm-3 col-md-3"></div>
+       <div class="col-sm-6 col-md-6"> <input value="" name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
         <input value="" name="monto" type="number" placeholder="monto" class="titulo"><br><br>
         <input value="" name="fecha" type="date" placeholder="fecha" >
+       
+      
         <%//creo un boton para volver a la pagina principal %>
+        
         <a href="/"><input type="button" value="volver"></a>
         <input type="submit">
-
+    </div>
+        <div class="col-sm-3 col-md-3"></div>
+    
+    </div>
+</div>
+</div>
         
     </form>
    
     <% }%>
-
+</div>
         
 </body>
 </html>
