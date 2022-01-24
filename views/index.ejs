@@ -7,13 +7,15 @@
     <title>Document</title>
 </head>
 <body>
+ <%//creo el listado con las operaciones y sus detalles%>
+ 
   <%if (condition==1) {%>
 <button><a href="/users">agregar editar eliminar</a></button>
  
    <h1>balance actual:$<%=suma%></h1>
  <%}%>
 
-  <%for (let index = 0; index <usuario.usuario.length; index++) {%>
+  <%for (let index =(usuario.usuario.length-1); index>=0; index--) {%>
   <%  let element = usuario.usuario[index]%>
     <h2><%= element.consepto%>:<%= element.monto%></h2>
     <h2><%= element.fecha%>:<%= element.tipo%></h2>
