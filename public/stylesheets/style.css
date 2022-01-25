@@ -1,54 +1,54 @@
-/*configuro la fuente del cuerpo y el padding*/
+/*set the body font and padding*/
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
  }
-/*configuro el color de los hipervinculos a*/
+/*configure the color of the hyperlinks a*/
 a {
   color: #536870;
 }
-/*configuro el contenedor div formulario2  */
+/*config the container div formulario2  */
 .formulario2{
- /*lo floto a la derecha*/
+ /*float to the right*/
   float:right;
-/*hago que ocupe todo el contenedor*/
+/*make container as block*/
 display:block;
-/*le doy un ancho del 60 porciento de la pantalla */
+/*give a width of 60% of the total screen to the container*/
 width:60%;
-/*le doy un largo del 100 porciento de la pantalla*/
+/*give a height of 100% of the total screen to the container*/
 height:100%;
   
 }
 .formulario1{
- /*lo floto a la izquierda*/
+/*float to the left*/
   float:left;
-/*hago que ocupe todo el contenedor*/
+/*make container as block*/
 display:block;
-/*le doy un ancho del 40 porciento de la pantalla */
+/*give a width of 40% of the total screen to the container*/
 width:40%;
-/*le doy un largo del 100 porciento de la pantalla*/
+/*give a height of 100% of the total screen to the container*/
 height:100%;
 }
-/*configuro el tamaño de las fuentes h2*/
+/*config font h2*/
 h2{
   font-size: 15px;
 }
-/*configuracion de movile*/
+/*config movile*/
 @media(max-width:420px){
  
   .formulario2{
-   /*le saco la flotacion al formulario2*/
+   /*desactivate float*/
     float:none;
-  /*hago que ocupe todo el ancho*/
+  /*give a width of 100% of the total screen to the container*/
  width:100%;
  
     
   }
   .formulario1{
-   /*le saco la flotacion al formulario1*/
+    /*desactivate float*/
     float:none;
-  /*hago que ocupe todo el ancho*/
+   /*give a width of 100% of the total screen to the container*/
   width:100%;
   }
 }

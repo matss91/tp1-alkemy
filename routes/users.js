@@ -1,37 +1,37 @@
-// requiriendo express
+// require express
 var express = require('express');
-//ejecutando router de express y guardandolo en la variable router
+//executing express router and saving in the router variable
 var router = express.Router();
-// requiriendo fs
+// require fs
 var fs=require("fs")
-//leyendo ingreso.json y guardandolo en la varible usuario ya parseado
+//reading ingreso.json and  saving it in the user variable already parse
 let usuarios=fs.readFileSync('ingreso.json',{encoding:'utf8'});
 let usuario=JSON.parse(usuarios)
 /* GET users listing. */
-// enviando formulario por get y renderisando operaciones pasandole la variable condition y usuario que es el JSON parseado
+// sending form by get and rendering operaciones passing the variable condition and usuario that is json parse
 router.get('/', function(req, res, next) {
  let condition=1
  
   res.render('operaciones',{condition,usuario})
 });
 
-// mandando por post la misma ruta que con get    
+//sending by post the same router by get  
 router.post('/', function(req, res, next) {
- //capturando los datos del formulario con req body
+ //capturing form data with req body
   const {consepto,monto,fecha,condicion} = req.body;
- //guardando el json parciado en el array op
+ //saving the json parse in the op array
   var op = new Array(); 
   op=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- //creando un if para saber si la opcion es 1 (ingreso) o 2(egreso) y guarando en la variable tipo
+ //creating conditional to know if the type is ingreso or egreso and saving it
   var tipo=""       
  if(condicion=="1"){
  tipo="ingreso"
  }else {
  tipo="egreso"
  }
- //generando un id que sea un numero despues del id del ultimo elemento
+ //generating an id that is a number after the last id
  let id=Number(op.usuario[op.usuario.length-1].id)+1
- //creando el objeto literal nuevo y pusheandolo en el array op.usuario
+ //creating the new objet literal and pushing it into the array by the op.usuario
  var nuevo=
                {id,consepto,
                monto,
@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
             tipo}
                op.usuario.push(nuevo)
            
-               //rescribiendo el json ingreso.json con el objeto literal op stringificado
+               //rewriting the json with the stringify objet literal
            fs.writeFile("ingreso.json",JSON.stringify(op),error=>{
              if(error){
                console.log("error")
@@ -52,33 +52,33 @@ router.post('/', function(req, res, next) {
   
   res.redirect('/')
 });
-//enviando por get a editar 
+//sending by get to edit
 router.get('/editar', function(req, res, next) {
-//creando variable contition y editar
+//creating variable condition and edit
  var condition=0
  var editar=1
- //renderisando index con las variables condition editar y usuario que es el json pareado
+ //rendering index with the variables condition editar y usuario which is the parsed json
   res.render('index',{usuario,condition,editar})
 });
-//enviando por get el id que es la posicion del array 
+//sending by get the id which is the position of the array
 router.get('/:id', function(req, res, next) {
- //creando el array op cargandole el json  parseado
+ //creating the op array loading the parsed json
   var op = new Array();
  op=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- // guardando en operacion el objeto literal dentro del array y creando la variable condition
+ // saving in operation the literal object inside an array and creating the condition variable
  var operacion=op.usuario[req.params.id]
  var condition=0
-//renderisando operaciones pasandole las variables operacion que es el elemento dentro del array del json y condition 
+//rendering operaciones by passing the variables operacion which is the element of the array and condition
   res.render('operaciones',{operacion,condition});
 });
-//enviando por put los datos de  el formulario a editar
+//sending by put the data of the form to edit
 router.put('/:id',function(req, res, next) {
   var array = new Array();
- //recuperando por req body los datos del formumario
+ //recover the form data by req body
   const {consepto,monto,fecha} = req.body
-//leyendo y parsiando el json guardandolo en el array 
+//reading and parsing the json saving it in the array
  array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- //buscando y iterando el elemento que coincida con el id
+ //iterating the element and comparing it with the id
  for(i=0;i<array.usuario.length;i++){
    if(req.params.id==array.usuario[i].id){
      var id=i
@@ -86,19 +86,19 @@ router.put('/:id',function(req, res, next) {
 
    }
  }
-//creando la variable tipo y cargandole la condicion de ingreso o egreso
+//creating the type variable and loading the ingreso or egreso
 let tipo=array.usuario[id].tipo
-//creando el objeto literal nuevo on el id consepto fecha tipo
+//creating the new literal object with the id consepto fecha and tipo
 var nuevo=
 
 {id,consepto,
 monto,
 fecha,
 tipo}
-//cargando el objeto literal dentro del array
+//loading object literal into array
  array.usuario[id]=nuevo
  
- //rescribiendo el nuevo array en el json
+ //rewriting the new array in the json
 fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
   if(error){
     console.log("error")
@@ -107,17 +107,17 @@ fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
   else
   console.log("funciona")
 })
- //redirigiendo a la pagina de inicio
+ //redirecting to home
  res.redirect("/")
  
 });
 
-//mandando por delete al objeto a eliminar
+//sending by delete the position of the array to delete
 router.delete('/eliminar/:id',function(req, res, next) {
   var array = new Array();
- //parseando el json y mandandolo al array
+ //parsing the json and saving it to the array
  array=JSON.parse(fs.readFileSync('ingreso.json',{encoding:'utf8'}))
- //iterando el array y buscando el elemento que coincide con el id pasado por parametro
+ //iterating the array and looking for the element that matches the id passed by parameter
  for(i=0;i<array.usuario.length;i++){
  
 if(req.params.id==array.usuario[i].id){
@@ -133,9 +133,9 @@ var id=i
 
 
 
- //elimino con el metodo splice del array el elemento que coincida con el id por parametro
+ //remove with the splice method from the array the element that matches the id passed by parameter
 array.usuario.splice(id,1)
-//reescribo el json
+//rewrite the json
  fs.writeFile("ingreso.json",JSON.stringify(array),error=>{
   if(error){
     console.log("error")
@@ -144,7 +144,7 @@ array.usuario.splice(id,1)
   else
   console.log("funciona")
 })
-   //redirijo a la pagina principal
+   //redirect home
  res.redirect("/")
  
 });
