@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Document</title>
@@ -42,13 +43,16 @@
             <br>
 </form>
 <%//itero el array y inserto un boton que me redirija editar y envie el id %>
+<%//creando contenedor para el formulario2%>
 <div class="formulario2">
     
     <%for (let index = 0; index <usuario.usuario.length; index++) {%>
+        <%//creando contenedor de boostrap y configurando las columnas%>
         <div class="container">
             <div class="row ">
         <%  let element = usuario.usuario[index]%>
-      <div class="col-3 col-sm-4 col-md-2"><%= element.consepto%>:</div>
+        <%//asignando 4 columnas para movile 3 para tablet y 6 de distintos tamaños para desktop%>
+        <div class="col-3 col-sm-4 col-md-2"><%= element.consepto%>:</div>
 
 <div class="col-3 col-sm-4 col-md-1"><%= element.monto%></div>
     
@@ -75,9 +79,12 @@
    
    <%if (condition==0) {%>
     <form action="<%=operacion.id%>?_method=PUT" method="POST">
+        <%//creando contenedor de boostrap y configuro columnas%>
         <div class="container">
             <div class="row ">
        <%//lleno los input con los datos a editar y los envio por put%>
+       <%//creo 3 contenedores 1 de 3 uno de 6  y otro de 3%>
+       <%//esto es para centrar el formulario%>
        <div class="col-sm-3 col-md-3"></div>
        <div class="col-sm-6 col-md-6"> <input value="" name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
         <input value="" name="monto" type="number" placeholder="monto" class="titulo"><br><br>
