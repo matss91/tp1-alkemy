@@ -14,10 +14,10 @@
     
     
     
-    <%//si la variable  condicion mandada por get es 1 se ejecuta el formulario de agregar producto  %>
+    <%//the condition variable sent by get is  1 the add product form is executed  %>
     
     <%if (condition==1) {%>
-    <%//armo el formulario de carga del producto y lo envio por post%>
+    <%//make the product loading form and send it by post%>
     
         <form class="formulario1" action="" method="post">
 
@@ -42,16 +42,16 @@
             <br>
             <br>
 </form>
-<%//itero el array y inserto un boton que me redirija editar y envie el id %>
-<%//creando contenedor para el formulario2%>
+<%//iterate the array and insert a button that redirects me to edit and sends the id%>
+<%//creating container for form2%>
 <div class="formulario2">
     
     <%for (let index = 0; index <usuario.usuario.length; index++) {%>
-        <%//creando contenedor de boostrap y configurando las columnas%>
+        <%//creating boostrap container and config the columns%>
         <div class="container">
             <div class="row ">
         <%  let element = usuario.usuario[index]%>
-        <%//asignando 4 columnas para movile 3 para tablet y 6 de distintos tamaños para desktop%>
+        <%//assigning 4 colums for movile,3 for tablet and 6 of different sizes for desktop%>
         <div class="col-3 col-sm-4 col-md-2"><%= element.consepto%>:</div>
 
 <div class="col-3 col-sm-4 col-md-1"><%= element.monto%></div>
@@ -63,7 +63,7 @@
 <div class="col-3 col-sm-4 col-md-2"><%= element.tipo%></div>
       <div class="col-12 col-sm-4 col-md-2"><button><a href="/users/<%=index%>">editar</a></button></div>
   
-      <%//mando con el metodo delete al elemento a eliminar%>
+      <%//command wiht the delete method to the element to delete%>
  <form action="/users/eliminar/<%=element.id%>?_method=DELETE" method="POST">
    <div class="col-12 col-sm-4 col-md-1"> <input value="eliminar" type="submit"></div>
 
@@ -75,23 +75,23 @@
 
 </div>
     <% }%>
-   <%//hago un if con la  condition que es igual a 0 enviada por get y la igualo a 0 para que entre en el if   %>
+   <%// if with the variable condition=0 sent by get,in this case  execute the edition form %>
    
    <%if (condition==0) {%>
     <form action="<%=operacion.id%>?_method=PUT" method="POST">
-        <%//creando contenedor de boostrap y configuro columnas%>
+        <%//creating bootstrap container and setting columns%>
         <div class="container">
             <div class="row ">
-       <%//lleno los input con los datos a editar y los envio por put%>
-       <%//creo 3 contenedores 1 de 3 uno de 6  y otro de 3%>
-       <%//esto es para centrar el formulario%>
+       <%//fill the input with the data to edit and send it by put%>
+       <%//create 3 containers 1 of 3 ,one of 6 y other of 3 to center the form%>
+      
        <div class="col-sm-3 col-md-3"></div>
        <div class="col-sm-6 col-md-6"> <input value="" name="consepto" type="text" placeholder="consepto" class="pass"><br><br>
         <input value="" name="monto" type="number" placeholder="monto" class="titulo"><br><br>
         <input value="" name="fecha" type="date" placeholder="fecha" >
        
       
-        <%//creo un boton para volver a la pagina principal %>
+        <%//create button to return to the main menu%>
         
         <a href="/"><input type="button" value="volver"></a>
         <input type="submit">
